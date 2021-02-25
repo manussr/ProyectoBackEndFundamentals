@@ -1,0 +1,20 @@
+{
+  "name": "ProyectoBackEndFundamentals",
+  "version": "1.0.0",
+  "description": "Este proyecto sirve para la evaluación del módulo. Se debe desarrollar en equipos.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manussr/ProyectoBackEndFundamentals.git"
+  },
+  "keywords": ["node", "javascript"],
+  "author": "Equipo 7",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manussr/ProyectoBackEndFundamentals/issues"
+  },
+  "homepage": "https://github.com/manussr/ProyectoBackEndFundamentals#readme"
+}
