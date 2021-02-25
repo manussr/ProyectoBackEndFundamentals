@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
-# ProyectoBackEndFundamentals
-=======
-# 🫀 Proyecto Backend Fundamentals
+# Proyecto Backend Fundamentals
 
 Este proyecto sirve para la evaluación del módulo. Se debe desarrollar en equipos. 
 
@@ -44,4 +41,4 @@ los usuarios puedan consultarla.
 ## ✅ Rúbrica de evaluación 
 
 Para la evaluación del proyecto se usará la siguiente rúbrica:
->>>>>>> Stashed changes
+
