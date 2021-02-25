@@ -1,4 +1,4 @@
-# Proyecto Backend Fundamentals
+# Proyecto Backend Fundamentals - Equipo 7
 
 Este proyecto sirve para la evaluación del módulo. Se debe desarrollar en equipos. 
 
@@ -42,3 +42,9 @@ los usuarios puedan consultarla.
 
 Para la evaluación del proyecto se usará la siguiente rúbrica:
 
+
+## Integrantes :man_technologist:
+
+- Edder Alejandro Serna Alvarez
+- Alan Esau Garcia Gutierrez
+- Emmanuel Santos Rodríguez
