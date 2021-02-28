@@ -18,7 +18,10 @@
     "type": "git",
     "url": "git+https://github.com/manussr/ProyectoBackEndFundamentals.git"
   },
-  "keywords": ["node", "javascript"],
+  "keywords": [
+    "node",
+    "javascript"
+  ],
   "author": "Equipo 7",
   "license": "ISC",
   "bugs": {
