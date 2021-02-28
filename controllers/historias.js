@@ -9,7 +9,7 @@ function crearHistoria(req, res) {
 // Modifica una historia a partir del id
 function modificarHistoria(req, res) {
     let historia1 = new Historia(req.params.id, 'Historia principal', 'Es la primera historia', '27-02-2021', '02-03-2021', 5, 6, 'Proyecto 1', 'Alta', 'En desarrollo');
-    let modificaciones = new Historia(req.body);
+    let modificaciones = req.body;
     historia1 = {...historia1, ...modificaciones };
     res.status(200).send(historia1);
 }
@@ -21,7 +21,7 @@ function eliminarHistoria(req, res) {
 
 // Asigna una historia a un responsable
 function asignarHistoria(req, res) {
-    res.send(`Historia ${req.params.idHistoria} asignada al usuario ${req.params.idResponsable}`);
+    res.send(`Historia ${req.query.idHistoria} asignada al usuario ${req.query.idResponsable}`);
 }
 
 // Obtiene las historias por proyecto
