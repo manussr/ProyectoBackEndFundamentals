@@ -1,40 +1,36 @@
-const Historia = require('../models/Historia');
+const Usuario = require('../models/Usuario');
 
-// Crea una historia
-function crearHistoria(req, res){
-    const nuevaHistoria = new Historia(req.body);
-    res.status(201).send(nuevaHistoria);
+
+// Crea un usuario
+function crearUsuario(req, res) {
+    const nuevoUsuario = new Usuario(req.body);
+    res.status(201).send(nuevoUsuario);
 }
 
-// Modifica una historia a partir del id
-function modificarHistoria(req, res){
-    let historia1 = new Historia(req.params.id, 'Historia principal', 'Es la primera historia', '27-02-2021', '02-03-2021', 5, 6, 'Proyecto 1', 'Alta', 'En desarrollo');
-    let modificaciones = new Historia(req.body);
-    historia1 = {...historia1, ...modificaciones};
-    res.status(200).send(historia1);
+// Modifica un usuario a partir del id
+function modificarUsuario(req, res) {
+    let usuario1 = new Usuario(req.params.id, 'Edder Serna', 'Supervisor', 'Desarrollo CSS');
+    let modificaciones = new Usuario(req.body);
+    usuario1 = {...usuario1, ...modificaciones };
+    res.status(200).send(usuario1);
 }
 
-// Elimina una historia a partir del id
-function eliminarHistoria(req, res){
-    res.send(`Historia ${req.params.id} eliminada`);
+// Elimina un usuario a partir del id
+function eliminarUsuario(req, res) {
+    res.status(200).send(`Usuario ${req.params.id} eliminado exitosamente!`);
 }
 
-// Asigna una historia a un responsable
-function asignarHistoria(req, res){
-    res.send(`Historia ${req.params.idHistoria} asignada al usuario ${req.params.idResponsable}`);
+// Obtiene la lista de usuarios
+function obtenerUsuarios(req, res) {
+    const usuario1 = new Usuario(1, 'Edder Serna', 'Supervisor', 'Control de Desarrollo');
+    const usuario2 = new Usuario(2, 'Alan Garcia', 'Desarrollador', 'Desarrollo CSS');
+    res.status(201).send([usuario1, usuario2]);
 }
 
-// Obtiene las historias por proyecto
-function obtenerHistoriasPorProyecto(req, res){
-    const historia1 = new Historia(1, 'Historia principal', 'Es la primera historia', '27-02-2021', '02-03-2021', 5, 6, 'Proyecto 1', 'Alta', 'En desarrollo');
-    const historia2 = new Historia(2, 'Historia 2', 'Es la segunda historia', '27-02-2021', '08-03-2021', 5, 6, 'Proyecto 1', 'Media', 'Bloqueada');
-    res.status(201).send([historia1, historia2]);
-}
 
 module.exports = {
-    crearHistoria, 
-    modificarHistoria, 
-    eliminarHistoria, 
-    asignarHistoria,
-    obtenerHistoriasPorProyecto
+    crearUsuario,
+    modificarUsuario,
+    eliminarUsuario,
+    obtenerUsuarios
 }
