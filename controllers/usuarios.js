@@ -3,7 +3,7 @@ const Usuario = require('../models/Usuario');
 
 // Crea un usuario
 function crearUsuario(req, res) {
-    const nuevoUsuario = new Usuario(req.body);
+    const nuevoUsuario = req.body;
     res.status(201).send(nuevoUsuario);
 }
 
