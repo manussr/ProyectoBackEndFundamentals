@@ -10,7 +10,7 @@ function crearUsuario(req, res) {
 // Modifica un usuario a partir del id
 function modificarUsuario(req, res) {
     let usuario1 = new Usuario(req.params.id, 'Edder Serna', 'Supervisor', 'Desarrollo CSS');
-    let modificaciones = new Usuario(req.body);
+    let modificaciones = req.body;
     usuario1 = {...usuario1, ...modificaciones };
     res.status(200).send(usuario1);
 }
