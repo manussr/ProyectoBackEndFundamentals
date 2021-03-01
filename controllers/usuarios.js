@@ -3,14 +3,14 @@ const Usuario = require('../models/Usuario');
 
 // Crea un usuario
 function crearUsuario(req, res) {
-    const nuevoUsuario = new Usuario(req.body);
+    const nuevoUsuario = req.body;
     res.status(201).send(nuevoUsuario);
 }
 
 // Modifica un usuario a partir del id
 function modificarUsuario(req, res) {
     let usuario1 = new Usuario(req.params.id, 'Edder Serna', 'Supervisor', 'Desarrollo CSS');
-    let modificaciones = new Usuario(req.body);
+    let modificaciones = req.body;
     usuario1 = {...usuario1, ...modificaciones };
     res.status(200).send(usuario1);
 }
