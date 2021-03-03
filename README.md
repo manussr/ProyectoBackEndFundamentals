@@ -43,8 +43,16 @@ los usuarios puedan consultarla.
 Para la evaluación del proyecto se usará la siguiente rúbrica:
 
 
-## Integrantes :man_technologist:
+## :man_technologist: Integrantes 
 
 - Edder Alejandro Serna Alvarez
 - Alan Esau Garcia Gutierrez
 - Emmanuel Santos Rodríguez
+
+## :open_file_folder: Archivos Adjuntos 
+
+- *Screenshots de "describe"*
+Puede encontrarse en la carpeta "assets/img"
+
+- *Archivo de comandos usados para la creacion de la base de datos en MySQL **proyAdmin.sql** *
+Puede encontrarse en la carpeta "assets"
