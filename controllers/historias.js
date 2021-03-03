@@ -2,7 +2,7 @@ const Historia = require('../models/Historia');
 
 // Crea una historia
 function crearHistoria(req, res) {
-    const nuevaHistoria = new Historia(req.body);
+    const nuevaHistoria = req.body;
     res.status(201).send(nuevaHistoria);
 }
 
