@@ -52,7 +52,9 @@ Para la evaluación del proyecto se usará la siguiente rúbrica:
 ## :open_file_folder: Archivos Adjuntos 
 
 - *Screenshots de "describe"*
+
 Puede encontrarse en la carpeta "assets/img"
 
 - *Archivo de comandos usados para la creacion de la base de datos en MySQL __proyAdmin.sql__*
+
 Puede encontrarse en la carpeta "assets"
