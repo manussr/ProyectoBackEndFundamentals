@@ -9,7 +9,7 @@ function crearProyecto(req, res) {
 
 // Modifica un proyecto a partir del id
 function modificarProyecto(req, res) {
-    let proyecto1 = new Proyecto(req.params.id, 'Aplicacion Tienda', 'A', '27-02-2021', Null, 1, '1');
+    let proyecto1 = new Proyecto(req.params.id, 'Aplicacion Tienda', 'A', '27-02-2021', Null, 1, 1);
     let modificaciones = req.body;
     proyecto1 = {...proyecto1, ...modificaciones };
     res.status(200).send(proyecto1);
@@ -17,8 +17,8 @@ function modificarProyecto(req, res) {
 
 // Finaliza un proyecto a partir del id
 function finalizarProyecto(req, res) {
-    let proyecto1 = new Proyecto(req.params.id, 'Aplicacion Tienda', 'A', '27-02-2021', Null, 1, '1');
-    let modificaciones = new Proyecto(req.params.id, 'Aplicacion Tienda', 'A', '27-02-2021', '03-03-2021', 1, '0');
+    let proyecto1 = new Proyecto(req.params.id, 'Aplicacion Tienda', 'A', '27-02-2021', Null, 1, 1);
+    let modificaciones = new Proyecto(req.params.id, 'Aplicacion Tienda', 'A', '27-02-2021', '03-03-2021', 1, 0);
     proyecto1 = {...proyecto1, ...modificaciones };
     res.status(200).send(proyecto1);
 }

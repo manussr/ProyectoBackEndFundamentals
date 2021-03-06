@@ -8,7 +8,7 @@ function crearHistoria(req, res) {
 
 // Modifica una historia a partir del id
 function modificarHistoria(req, res) {
-    let historia1 = new Historia(req.params.id, 'Historia principal', 'Es la primera historia', '27-02-2021', '02-03-2021', 5, 6, 'Proyecto 1', 'Alta', 'En desarrollo');
+    let historia1 = new Historia(req.params.id, 'Historia principal', 'En desarrollo', 'A', '27-02-2021', '02-03-2021', 'Es la primera historia', 5, 6, 100);
     let modificaciones = req.body;
     historia1 = {...historia1, ...modificaciones };
     res.status(200).send(historia1);
@@ -26,8 +26,8 @@ function asignarHistoria(req, res) {
 
 // Obtiene las historias por proyecto
 function obtenerHistoriasPorProyecto(req, res) {
-    const historia1 = new Historia(1, 'Historia principal', 'Es la primera historia', '27-02-2021', '02-03-2021', 5, 6, 'Proyecto 1', 'Alta', 'En desarrollo');
-    const historia2 = new Historia(2, 'Historia 2', 'Es la segunda historia', '27-02-2021', '08-03-2021', 5, 6, 'Proyecto 1', 'Media', 'Bloqueada');
+    const historia1 = new Historia(1001, 'Historia principal', 'En desarrollo', 'A', '27-02-2021', '02-03-2021', 'Es la primera historia', 5, 6, 100);
+    const historia2 = new Historia(1002, 'Historia 2', 'Finalizada', 'M', '27-02-2021', '08-03-2021', 'Es la segunda historia', 5, 6, 101);
     res.status(201).send([historia1, historia2]);
 }
 
