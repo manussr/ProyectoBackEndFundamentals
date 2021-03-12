@@ -18,7 +18,7 @@ const sequelize = new Sequelize('mysql::memory:');
 
 //creanto el modelo para la entidad Proyecto
 const Proyecto = sequelize.define('Proyecto', {
-  id: {
+  idProyecto: {
     // se indica el tipo de dato de la columna.
     type: DataTypes.INTEGER,
     // indicamos que este campo es llave primaria
@@ -32,21 +32,21 @@ const Proyecto = sequelize.define('Proyecto', {
   prioridad: DataTypes.STRING,
   estado: DataTypes.STRING,
   fechaCreacion: DataTypes.STRING,
-  desarrolladorAsignado : DataTypes.STRING,
-  administradorAsignado : DataTypes.STRING
+  idAsignado : DataTypes.STRING,
+  idCreador : DataTypes.STRING
   // le decimos a que tabla de nuestra base de datos corresponde.
 },{ tableName: 'proyectos'});
 
-Proyecto.hasOne(desarrolladorAsignado)
+Proyecto.hasOne(idAsignado)
 Proyecto.belongsTo(Usuario, {
-  as: 'desarrolladorAsignado',
-  foreignKey: 'id'
+  as: 'idAsignado',
+  foreignKey: 'idUsuario'
 });
 
-Proyecto.hasOne(administradorAsignado)
+Proyecto.hasOne(idCreador)
 Proyecto.belongsTo(Usuario, {
-  as: 'administradorAsignado',
-  foreignKey: 'id'
+  as: 'idCreador',
+  foreignKey: 'idUsuario'
 });
 
 // exportamos el modelo.
