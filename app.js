@@ -1,4 +1,3 @@
-// Importamos las bibliotecas necesarias
 var express = require('express'),
     bodyParser = require('body-parser'),
     cors = require('cors');
@@ -12,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Agregamos el código de nuestro router (routes/index.js)
-app.use('/', require('./routes'));
+app.use('/v1', require('./routes'));
 
 // Manejando los errores 404
 app.use(function(req, res, next) {
@@ -21,27 +20,28 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// Sequalize
-const Sequelize = require('sequelize')
+// **************** Configuración de MySQL ********************
 
+const sequelize=require('./controllers/database')
 
-var isProduction = process.env.NODE_ENV === 'production';
+// Setting port
+const PORT = process.env.PORT || 3010;
 
-const sequelize = new Sequelize('bbz0ggoqfczud69fyzdx', 'ugv1lnplmdb3j665', 'pMzHTfORFBKRNiubOXI5', {
-  host: 'bbz0ggoqfczud69fyzdx-mysql.services.clever-cloud.com',
-  // una de estas opciones dependiendo el gestor de la base
-  dialect: 'mysql',
-})
+// Arrancamos el servidor
+app.listen(PORT, function () {
+  console.log(`La APP ha arranado en http://localhost:${PORT}`);
 
-sequelize.authenticate()
-.then(() => {
-  console.log("It's alive!!!!");
-})
-.catch(err => {
-  console.log('No se conecto :(')
-})
+  // Conectase a la base de datos
+  // Force true: DROP TABLES
+  sequelize.sync({ force: false }).then(() => {
+      console.log("Conectado a la base de datos SIUUU");
+  }).catch(error => {
+      console.log('Se ha producido un error', error);
+  })
 
-// Iniciando el servidor...
-var server = app.listen(process.env.PORT || 3000, function(){
-  console.log('Escuchando en el puerto ' + server.address().port);
 });
+
+
+
+
+

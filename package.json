@@ -1,32 +1,21 @@
 {
-  "name": "ProyectoBackEndFundamentals",
+  "name": "adoptapet-api",
   "version": "1.0.0",
-  "description": "Este proyecto sirve para la evaluación del módulo. Se debe desarrollar en equipos.",
+  "description": "",
   "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
     "sequelize": "^6.5.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./app.js",
-    "dev": "nodemon ./app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/manussr/ProyectoBackEndFundamentals.git"
-  },
-  "keywords": [
-    "node",
-    "javascript"
-  ],
-  "author": "Equipo 7",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/manussr/ProyectoBackEndFundamentals/issues"
-  },
-  "homepage": "https://github.com/manussr/ProyectoBackEndFundamentals#readme"
+  }
 }

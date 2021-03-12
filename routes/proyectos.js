@@ -1,17 +1,15 @@
-// Estructura del CRUD
-const router = require('express').Router();
-const {
+var router = require('express').Router();
+
+const{
     crearProyecto,
-    modificarProyecto,
-    finalizarProyecto,
-    eliminarProyecto,
-    obtenerProyectos
+    obtenerProyecto,
+	modificarProyecto,
+    eliminarProyecto
 } = require('../controllers/proyectos')
 
-router.get('/', obtenerProyectos)
+router.get('/', obtenerProyecto)
 router.post('/', crearProyecto)
 router.put('/:id', modificarProyecto)
-router.put('/:id', finalizarProyecto)
 router.delete('/:id', eliminarProyecto)
 
 module.exports = router;

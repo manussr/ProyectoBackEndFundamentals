@@ -1,4 +1,3 @@
-// Estructura del CRUD
 const router = require('express').Router();
 const {
   crearUsuario,
