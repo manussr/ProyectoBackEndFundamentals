@@ -18,36 +18,36 @@ const sequelize = new Sequelize('mysql::memory:');
 
 //creanto el modelo para la entidad Proyecto
 const Proyecto = sequelize.define('Proyecto', {
-  idProyecto: {
-    // se indica el tipo de dato de la columna.
-    type: DataTypes.INTEGER,
-    // indicamos que este campo es llave primaria
-    primaryKey : true
-  },
-  nombre: {
-    type: DataTypes.STRING,
-    // indicamos que el campo no admite valores null
-    allowNull: false
-  },
-  prioridad: DataTypes.STRING,
-  estado: DataTypes.STRING,
-  fechaCreacion: DataTypes.STRING,
-  idAsignado : DataTypes.STRING,
-  idCreador : DataTypes.STRING
-  // le decimos a que tabla de nuestra base de datos corresponde.
-},{ tableName: 'proyectos'});
+    idProyecto: {
+        // se indica el tipo de dato de la columna.
+        type: DataTypes.INTEGER,
+        // indicamos que este campo es llave primaria
+        primaryKey: true
+    },
+    nombre: {
+        type: DataTypes.STRING,
+        // indicamos que el campo no admite valores null
+        allowNull: false
+    },
+    prioridad: DataTypes.STRING,
+    estado: DataTypes.STRING,
+    fechaCreacion: DataTypes.STRING,
+    idAsignado: DataTypes.STRING,
+    idCreador: DataTypes.STRING
+        // le decimos a que tabla de nuestra base de datos corresponde.
+}, { tableName: 'proyectos' });
 
 Proyecto.hasOne(idAsignado)
 Proyecto.belongsTo(Usuario, {
-  as: 'idAsignado',
-  foreignKey: 'idUsuario'
+    as: 'idAsignado',
+    foreignKey: 'idUsuario'
 });
 
 Proyecto.hasOne(idCreador)
 Proyecto.belongsTo(Usuario, {
-  as: 'idCreador',
-  foreignKey: 'idUsuario'
+    as: 'idCreador',
+    foreignKey: 'idUsuario'
 });
 
-// exportamos el modelo.
+
 module.exports = Proyecto;
