@@ -24,7 +24,9 @@ function modificarProyecto(req, res, next) {
 }
 
 // Finaliza un proyecto a partir del id
-// TO DO 
+function finalizarProyecto(req, res, next) {
+
+}
 
 // Elimina un proyecto a partir del id
 function eliminarProyecto(req, res) {
@@ -57,6 +59,7 @@ function obtenerProyectos(req, res) {
 module.exports = {
     crearProyecto,
     modificarProyecto,
+    finalizarProyecto,
     eliminarProyecto,
     obtenerProyectos
 }

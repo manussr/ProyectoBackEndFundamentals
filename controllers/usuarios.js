@@ -3,8 +3,18 @@ const Usuario = require('../models/Usuario');
 
 // Crea un usuario
 function crearUsuario(req, res) {
-    const nuevoUsuario = req.body;
-    res.status(201).send(nuevoUsuario);
+    Usuario.create({
+        id: req.body.id,
+        nombre: req.body.nombre,
+        cargo: req.body.cargo,
+        departamento: req.body.departamento,
+        tipo: req.body.tipo
+    }).then(usuario => {
+        res.json(usuario);
+    })
+
+    /* const nuevoUsuario = req.body;
+    res.status(201).send(nuevoUsuario); */
 }
 
 // Modifica un usuario a partir del id
@@ -22,10 +32,18 @@ function eliminarUsuario(req, res) {
 
 // Obtiene la lista de usuarios
 function obtenerUsuarios(req, res) {
-    const usuario1 = new Usuario(1, 'Edder Serna', 'Auxiliar A', 'Control de Desarrollo', 'Supervisor');
-    const usuario2 = new Usuario(2, 'Alan Garcia', 'Subjefe', 'Desarrollo CSS', 'Desarrollador', );
-    res.status(201).send([usuario1, usuario2]);
+    /* const usuario1 = new Usuario(1, 'Edder Serna', 'Auxiliar A', 'Control de Desarrollo', 'Supervisor');
+    const usuario2 = new Usuario(2, 'Alan Garcia', 'Subjefe', 'Desarrollo CSS', 'Desarrollador', ); */
+    /* Usuario.findAll().then(usuarios => {
+        console.log("All users:", JSON.stringify(users, null, 4));
+    }); 
+    res.status(201).send([usuario1, usuario2]);*/
+    /* Usuario.findByPk(req.params.id).then(user => {
+        res.json(user); */
+    const usuario1 = Usuario.findAll();
+    res.json(usuario1);
 }
+
 
 
 module.exports = {

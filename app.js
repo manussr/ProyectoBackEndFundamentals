@@ -23,20 +23,25 @@ app.use(function(req, res, next) {
 
 // Sequalize
 const Sequelize = require('sequelize')
-
-
 var isProduction = process.env.NODE_ENV === 'production';
-
-const sequelize = new Sequelize('DVxKsCODLM', 'DVxKsCODLM', '0t4pPr3pi8', {
+//const sequelize = new Sequelize('b1dnyzh7qqtgno6uzk8e', 'urreyh1e6dtzqjlp', 'QymwvMofEDO4Mg6ZNhoX', { //0t4pPr3pi8
+const sequelize = new Sequelize('DVxKsCODLM', 'uDVxKsCODLM', '0t4pPr3pi8', {
+    //host: 'b1dnyzh7qqtgno6uzk8e-mysql.services.clever-cloud.com',
     host: 'remotemysql.com',
     port: 3306,
-    // una de estas opciones dependiendo el gestor de la base
     dialect: 'mysql',
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+    }
 })
 
-sequelize.authenticate()
+//Force : drop table
+sequelize.sync({ force: false })
     .then(() => {
-        console.log("It's alive!!!!");
+        console.log("Conectado");
     })
     .catch(err => {
         console.log('No se conecto :(')

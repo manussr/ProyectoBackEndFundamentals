@@ -1,9 +1,12 @@
 // Historia.js
 // Esta clase representa las historias (tareas) a desarrollar
+const Proyecto = require('../models/Proyecto');
+const Usuario = require('../models/Usuario');
 
-const { Sequelize, DataTypes, DATEONLY } = require('sequelize');
+
+const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = new Sequelize('mysql::memory:');
-//creando el modelo para la entidad Historia
+
 const Historia = sequelize.define('Historia', {
     id: {
         type: DataTypes.INTEGER,
@@ -26,39 +29,14 @@ const Historia = sequelize.define('Historia', {
         allowNull: false
     },
     fecha_finalizacion: DataTypes.DATEONLY,
-    descripcion: DataTypes.TEXT,
-    idProyecto: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    idAdministrador: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    idDesarrollador: DataTypes.INTEGER,
+    descripcion: DataTypes.TEXT
 
 }, { tableName: 'historia' });
 
-Historia.hasOne(idProyecto)
-Histroia.belongsTo(Proyecto, {
-    as: 'idProyecto',
-    foreignKey: 'idProyecto',
+Historia.hasOne(Proyecto, { as: 'idProyecto', foreignKey: 'id' });
 
-});
+Historia.hasOne(Usuario, { as: 'idAdministrador', foreignKey: 'id' });
 
-Historia.hasOne(idAdministrador)
-Histroia.belongsTo(Usuario, {
-    as: 'idAdministrador',
-    foreignKey: 'idUsuario',
-
-});
-
-Historia.hasOne(idDesarrollador)
-Historia.belongsTo(Usuario, {
-    as: 'idDesarrollador',
-    foreignKey: 'idUsuario',
-
-});
-
+Historia.hasOne(Usuario, { as: 'idDesarrollador', foreignKey: 'id' });
 
 module.exports = Historia;
