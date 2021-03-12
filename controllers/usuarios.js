@@ -1,36 +1,51 @@
-const Usuario = require('../models/Usuario');
+/*  Archivo controllers/usuarios.js
+ *  Simulando la respuesta de objetos Usuario
+ *  en un futuro aquí se utilizarán los modelos
+ */
 
+const Usuario = require('../models/Usuario')
 
-// Crea un usuario
-function crearUsuario(req, res) {
-    const nuevoUsuario = req.body;
-    res.status(201).send(nuevoUsuario);
+function crearUsuario(req, res,next) {
+  const usr = Usuario.build(req.body)
+  usr.save().then(user => {
+    return res.status(201).json(user.toAuthJSON())
+  }).catch(next);
 }
 
-// Modifica un usuario a partir del id
-function modificarUsuario(req, res) {
-    let usuario1 = new Usuario(req.params.id, 'Edder Serna', 'Supervisor', 'Desarrollo CSS');
-    let modificaciones = req.body;
-    usuario1 = {...usuario1, ...modificaciones };
-    res.status(200).send(usuario1);
-}
-
-// Elimina un usuario a partir del id
-function eliminarUsuario(req, res) {
-    res.status(200).send(`Usuario ${req.params.id} eliminado exitosamente!`);
-}
-
-// Obtiene la lista de usuarios
 function obtenerUsuarios(req, res) {
-    const usuario1 = new Usuario(1, 'Edder Serna', 'Supervisor', 'Control de Desarrollo');
-    const usuario2 = new Usuario(2, 'Alan Garcia', 'Desarrollador', 'Desarrollo CSS');
-    res.status(201).send([usuario1, usuario2]);
+  Usuario.findAll().then(users => {
+    return res.json(users)
+  }).catch(error => {
+    return res.sendStatus(401)
+  })
 }
 
+function modificarUsuario(req, res,next) {
+  const usr = Usuario.create({
+    id : req.params.id,
+    ...req.body
+  })
+  usr.save().then(user => {
+    return res.status(201).json(user.toAuthJSON())
+  }).catch(next);
+}
+
+function eliminarUsuario(req, res) {
+  const usr = Usuario.findByPk(req.usuario.id);
+  if (usr === null){
+    return res.sendStatus(401)
+  } else {
+    usr.destroy().then(usr => {
+      return res.status(200)
+    }).catch(err => {
+      return res.sendStatus(500)
+    })
+  }
+}
 
 module.exports = {
-    crearUsuario,
-    modificarUsuario,
-    eliminarUsuario,
-    obtenerUsuarios
+  crearUsuario,
+  obtenerUsuarios,
+  modificarUsuario,
+  eliminarUsuario
 }
