@@ -10,27 +10,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
-// **************** COnfiguración de MySQL ********************
-
-const Sequelize = require('sequelize')
-
-const sequelize = new Sequelize('DVxKsCODLM', 'DVxKsCODLM', '0t4pPr3pi8', {
-	host: 'remotemysql.com',
-	dialect: 'mysql',
-})
-
-// Verificamos que la conexion funcione
-sequelize.authenticate()
-.then(() => {
-	console.log("Conectado a la base de datos")
-})
-.catch(err => {
-	console.log('No se conecto')
-})
-
-
-
 // Agregamos el código de nuestro router (routes/index.js)
 app.use('/v1', require('./routes'));
 
@@ -41,7 +20,28 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// Iniciando el servidor...
-var server = app.listen(process.env.PORT || 3000, function(){
-  console.log('Escuchando en el puerto ' + server.address().port);
+// **************** Configuración de MySQL ********************
+
+const sequelize=require('./controllers/database')
+
+// Setting port
+const PORT = process.env.PORT || 3010;
+
+// Arrancamos el servidor
+app.listen(PORT, function () {
+  console.log(`La APP ha arranado en http://localhost:${PORT}`);
+
+  // Conectase a la base de datos
+  // Force true: DROP TABLES
+  sequelize.sync({ force: false }).then(() => {
+      console.log("Conectado a la base de datos SIUUU");
+  }).catch(error => {
+      console.log('Se ha producido un error', error);
+  })
+
 });
+
+
+
+
+
