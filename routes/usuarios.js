@@ -8,7 +8,7 @@ const {
   iniciarSesion,
 } = require('../controllers/usuarios')
 
-router.get('/', auth.requerido, obtenerUsuarios)
+router.get('/:id?', auth.requerido, obtenerUsuarios)
 router.post('/', crearUsuario)
 router.put('/:id', auth.requerido, modificarUsuario)
 router.delete('/:id', auth.requerido, eliminarUsuario)

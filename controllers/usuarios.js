@@ -18,12 +18,18 @@ function crearUsuario(req, res,next) {
 }
 
 function obtenerUsuarios(req, res) {
-  Usuario.findAll().then(users => {
-    return res.json(users.map(u=>u.publicData()))
-  }).catch(error => {
-    console.log(error);
-    return res.status(401).send(error);
-  })
+  if(!req.params.id){
+    Usuario.findAll().then(users => {
+        return res.json(users.map(u=>u.publicData()))
+      }).catch(error => {
+        console.log(error);
+        return res.status(401).send(error);
+      })
+  }else{
+    Usuario.findByPk(req.params.id)
+    .then(user=> res.json(user.publicData()))
+    .catch(error => res.status(401).send(error))
+  }
 }
 
 function modificarUsuario(req, res,next) {
