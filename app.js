@@ -5,6 +5,9 @@ var express = require('express'),
 // Objeto global de la app
 var app = express();
 
+//Passport
+require('./config/passport');
+
 // configuración de middlewares
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,7 +32,7 @@ const PORT = process.env.PORT || 3010;
 
 // Arrancamos el servidor
 app.listen(PORT, function () {
-  console.log(`La APP ha arranado en http://localhost:${PORT}`);
+  console.log(`La APP ha arrancado en http://localhost:${PORT}`);
 
   // Conectase a la base de datos
   // Force true: DROP TABLES

@@ -4,19 +4,25 @@
  */
 
 const Usuario = require('../models/Usuario')
+const passport = require('passport');
 
 function crearUsuario(req, res,next) {
-  const usr = Usuario.build(req.body)
-  usr.save().then(user => {
-    return res.status(201).json(user.toAuthJSON())
-  }).catch(next);
+    const body = req.body;
+    const password = body.password;
+    delete body.password;
+    const usr = Usuario.build(body);
+    usr.crearPassword(password);
+    usr.save().then(user => {
+        return res.status(201).json(user.toAuthJSON())
+    }).catch(next);
 }
 
 function obtenerUsuarios(req, res) {
   Usuario.findAll().then(users => {
-    return res.json(users)
+    return res.json(users.map(u=>u.publicData()))
   }).catch(error => {
-    return res.sendStatus(401)
+    console.log(error);
+    return res.status(401).send(error);
   })
 }
 
@@ -43,9 +49,32 @@ function eliminarUsuario(req, res) {
   }
 }
 
+function iniciarSesion(req, res, next){
+    if(!req.body.email){
+        return res.status(422).json({errors: {email:"No puede estar vacio"}});
+    }
+
+    if(!req.body.password){
+        return res.status(422).json({errors:{password: "No puede estar vacio"}})
+    }
+
+    passport.authenticate('local', {session: false}, function(err, user, info){
+        if(err){
+            return next(err);
+        }
+        if(user){
+            user.token = user.generarJWT();
+            return res.json({user: user.toAuthJSON()});
+        }else{
+            return status(422).json(info);
+        }
+    })(req, res, next);
+}
+
 module.exports = {
   crearUsuario,
   obtenerUsuarios,
   modificarUsuario,
-  eliminarUsuario
+  eliminarUsuario,
+  iniciarSesion
 }
