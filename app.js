@@ -1,6 +1,7 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     cors = require('cors');
+LocalStrategy = require("passport-local");
 
 // Objeto global de la app
 var app = express();
