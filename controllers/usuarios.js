@@ -80,16 +80,6 @@ function obtenerUsuario(req, res) {
         }).catch(next);
     })
     .catch(next);
-
-    /*
-    const usr = Usuario.build({
-        id: req.params.id,
-        ...req.body
-    })
-    usr.save().then(user => {
-        return res.status(201).json(user.toAuthJSON())
-    }).catch(next);
-    */
 }
 
 // Esta función elimina un usuario
@@ -109,21 +99,8 @@ function eliminarUsuario(req, res) {
                 })
             }
         }).catch(error=>{
-            
+            return res.status(500).json('Error con el servidor');
         });
-        /*
-        const usuario =  Usuario.findByPk(req.params.id).catch()
-        if(!usuario){
-            return res.status(500).json('El usuario no existe');
-        }else{
-            console.log(usuario);
-            Usuario.destroy({ where: { idUsuario: usr } })
-            .then(user => { res.status(200).json({ Operacion: 'Se ha borrado el registro con exito' }) })
-            .catch(error=>{
-                return res.status(500).json('Error con el servidor');
-            })
-        }
-        */
     }
 }
 
@@ -193,6 +170,27 @@ function busquedaPorAtributos(req, res) {
     })
 }
 
+// Esta funcion obtiene la información de los campos que el usuario solicite
+
+function obtenerInformacionPorCampos(req, res, next) {
+    let { parametros } = req.params;
+    parametros=parametros.split(',');
+    // Atributos que existen en el modelo
+    const validos = Object.keys(Usuario.rawAttributes);
+    // Evita mostrar el hash y salt
+    validos.splice(validos.indexOf('hash'), 1);
+    validos.splice(validos.indexOf('salt'), 1);
+    // Solo considera los atributos que existen en el modelo
+    const atributosBusqueda = parametros.filter(p=>validos.includes(p))
+    Usuario.findAll({
+      attributes: atributosBusqueda
+    }).then(post => {
+      return res.status(200).json(post);
+  }).catch(error=>status(500).json(error))
+
+}
+  
+
 module.exports = {
     crearUsuario,
     obtenerUsuario,
@@ -200,5 +198,6 @@ module.exports = {
     modificarUsuario,
     eliminarUsuario,
     iniciarSesion,
-    busquedaPorAtributos
+    busquedaPorAtributos,
+    obtenerInformacionPorCampos
 }
