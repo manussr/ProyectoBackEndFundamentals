@@ -19,12 +19,28 @@ function crearUsuario(req, res,next) {
 
 function obtenerUsuarios(req, res) {
   if(!req.params.id){
-    Usuario.findAll().then(users => {
-        return res.json(users.map(u=>u.publicData()))
-      }).catch(error => {
-        console.log(error);
-        return res.status(401).send(error);
-      })
+    if(req.body.limite){
+        if(typeof req.body.limite !== 'number'){
+            return res.status(400).json('Limite debe ser un numero');
+        }
+        else if(req.body.limite < 1){
+            return res.status(400).json('Limite debe ser positivo');
+        }else{
+            Usuario.findAll({limit: req.body.limite}).then(users=>{
+                console.log('aqui');
+                return res.json(users);
+            }).catch(error=>{
+                return res.status(401).send(error);
+            })
+        }
+    }else{
+        Usuario.findAll().then(users => {
+            return res.json(users.map(u=>u.publicData()))
+          }).catch(error => {
+            console.log(error);
+            return res.status(401).send(error);
+          })   
+    }
   }else{
     Usuario.findByPk(req.params.id)
     .then(user=> res.json(user.publicData()))
