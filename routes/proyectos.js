@@ -2,14 +2,16 @@ var router = require('express').Router();
 
 const{
     crearProyecto,
-    obtenerProyecto,
-	modificarProyecto,
-    eliminarProyecto
+    obtenerProyectos,
+	modificarProyectoCompleto,
+    eliminarProyecto,
+    obtenerProyectosAvanzado
 } = require('../controllers/proyectos')
 
-router.get('/', obtenerProyecto)
+router.get('/', obtenerProyectos)
+router.get('/:parametros', obtenerProyectosAvanzado)
 router.post('/', crearProyecto)
-router.put('/:id', modificarProyecto)
-router.delete('/:id', eliminarProyecto)
+router.put('/:idProyecto', modificarProyectoCompleto)
+router.delete('/:idProyecto', eliminarProyecto)
 
 module.exports = router;
