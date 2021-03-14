@@ -10,11 +10,11 @@ const {
     busquedaPorAtributos
 } = require('../controllers/usuarios')
 
-router.get('/:id', /*auth.requerido,*/ obtenerUsuario) //funciona
-router.get('/', /*auth.requerido,*/ obtenerUsuarios) //Sin realizar 
+router.get('/:id?', /*auth.requerido,*/ obtenerUsuario) //funciona
+//router.get('/', /*auth.requerido,*/ obtenerUsuarios) //Sin realizar 
 router.post('/', crearUsuario) //funciona
-router.put('/:id', auth.requerido, modificarUsuario) //sin probar
-router.delete('/:id', /*auth.requerido,*/ eliminarUsuario) //no funciona
+router.put('/:id', /*auth.requerido,*/ modificarUsuario) //sin probar
+router.delete('/:id', /*auth.requerido,*/ eliminarUsuario) // funciona
 router.post('/login', iniciarSesion); //funciona
 router.post('/buscar', /*auth.requerido,*/ busquedaPorAtributos); //para realizar busqueda se pone "busqueda":"<campo>"
 
