@@ -43,7 +43,7 @@ async function eliminarProyecto(req, res) {
     });
     if (eliminar) {
       //return res.status(204).send("Proyecto eliminado");
-      return res.status(204).json({message:"Proyecto eliminado correctament"}); 
+      return res.status(204).json({message:"Proyecto eliminado correctamente"}); 
     }
     throw new Error("Proyecto no encontrado");
   } catch (error) {
@@ -61,6 +61,19 @@ function obtenerProyectosAvanzado(req, res) {
 })
 }
 
+ function obtenerProyectoPorID(req, res) {
+  var { idProyecto } = req.params;
+  Proyecto.findOne({ where: {idProyecto: idProyecto} }).then(function(proyecto) { 
+    // project will be the first entry of the Projects table with the title 'aProject' || null
+    if(proyecto){
+       res.json(proyecto); 
+    }else{
+       res.status(404).json({message: "Proyecto no encontrado"}); 
+    }
+    //
+  })
+  
+}
 
 function dividirParametros(cadenaADividir,separador) {
   var arrayDeCadenas = cadenaADividir.split(separador);
@@ -73,5 +86,6 @@ module.exports = {
   obtenerProyectos,
   modificarProyectoCompleto,
   eliminarProyecto,
+  obtenerProyectoPorID,
   obtenerProyectosAvanzado
 }
