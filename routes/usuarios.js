@@ -6,6 +6,7 @@ const {
   modificarUsuario,
   eliminarUsuario,
   iniciarSesion,
+  busquedaPorAtributos
 } = require('../controllers/usuarios')
 
 router.get('/:id?', auth.requerido, obtenerUsuarios)
@@ -13,5 +14,6 @@ router.post('/', crearUsuario)
 router.put('/:id', auth.requerido, modificarUsuario)
 router.delete('/:id', auth.requerido, eliminarUsuario)
 router.post('/login', iniciarSesion);
+router.post('/buscar', auth.requerido, busquedaPorAtributos);
 
 module.exports = router;

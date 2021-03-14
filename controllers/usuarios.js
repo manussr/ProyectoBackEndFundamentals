@@ -1,11 +1,13 @@
 /*  Archivo controllers/usuarios.js
- *  Simulando la respuesta de objetos Usuario
- *  en un futuro aquí se utilizarán los modelos
+ *  Respuestas de objetos Usuario
  */
 
 const Usuario = require('../models/Usuario')
 const passport = require('passport');
+const {Op} = require('sequelize');
 
+
+// Esta función crea un usuario y devuelve su nombre, cargo y token
 function crearUsuario(req, res,next) {
     const body = req.body;
     const password = body.password;
@@ -17,18 +19,19 @@ function crearUsuario(req, res,next) {
     }).catch(next);
 }
 
+// Esta función obtiene los usuarios y tiene parámetros opcionales 
 function obtenerUsuarios(req, res) {
   if(!req.params.id){
-    if(req.body.limite){
-        if(typeof req.body.limite !== 'number'){
+    if(req.query.limite){
+        let limite = Number(req.query.limite);
+        if(isNaN(limite)){
             return res.status(400).json('Limite debe ser un numero');
         }
-        else if(req.body.limite < 1){
+        else if(req.query.limite < 1){
             return res.status(400).json('Limite debe ser positivo');
         }else{
-            Usuario.findAll({limit: req.body.limite}).then(users=>{
-                console.log('aqui');
-                return res.json(users);
+            Usuario.findAll({limit: limite}).then(users=>{
+                return res.json(users.map(u=>u.publicData()));
             }).catch(error=>{
                 return res.status(401).send(error);
             })
@@ -37,7 +40,6 @@ function obtenerUsuarios(req, res) {
         Usuario.findAll().then(users => {
             return res.json(users.map(u=>u.publicData()))
           }).catch(error => {
-            console.log(error);
             return res.status(401).send(error);
           })   
     }
@@ -48,6 +50,7 @@ function obtenerUsuarios(req, res) {
   }
 }
 
+// Esta función modifica un usuario
 function modificarUsuario(req, res,next) {
   const usr = Usuario.create({
     id : req.params.id,
@@ -58,6 +61,7 @@ function modificarUsuario(req, res,next) {
   }).catch(next);
 }
 
+// Esta función elimina un usuario
 function eliminarUsuario(req, res) {
   const usr = Usuario.findByPk(req.usuario.id);
   if (usr === null){
@@ -71,6 +75,7 @@ function eliminarUsuario(req, res) {
   }
 }
 
+// Esta función inicia la sesión del usuario
 function iniciarSesion(req, res, next){
     if(!req.body.email){
         return res.status(422).json({errors: {email:"No puede estar vacio"}});
@@ -93,10 +98,32 @@ function iniciarSesion(req, res, next){
     })(req, res, next);
 }
 
+
+// Esta función devuelve los objetos que tengan un atributo que coincida con la busqueda
+function busquedaPorAtributos(req, res, next){
+    const atributoBusqueda = req.query.busqueda?req.query.busqueda:'';
+    Usuario.findAll({
+        where:{
+            [Op.or]:[
+                {email:{[Op.like]:`%${atributoBusqueda}%`}},
+                {nombre:{[Op.like]:`%${atributoBusqueda}%`}},
+                {departamento:{[Op.like]:`%${atributoBusqueda}%`}},
+                {cargo:{[Op.like]:`%${atributoBusqueda}%`}},
+                {tipo:{[Op.like]:`%${atributoBusqueda}%`}}
+            ]
+        }
+    }).then(users=>{
+        return res.json(users.map(u=>u.map));
+    }).catch(error=>{
+        return res.status(401).send(error);
+    })
+}
+
 module.exports = {
   crearUsuario,
   obtenerUsuarios,
   modificarUsuario,
   eliminarUsuario,
-  iniciarSesion
+  iniciarSesion,
+  busquedaPorAtributos
 }
