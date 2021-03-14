@@ -19,8 +19,12 @@ function crearUsuario(req, res, next) {
     }).catch(next);
 }
 
-// Esta función obtiene los usuarios y tiene parámetros opcionales 
 function obtenerUsuarios(req, res) {
+
+}
+
+// Esta función obtiene los usuarios y tiene parámetros opcionales 
+function obtenerUsuario(req, res) {
     if (!req.params.id) {
         if (req.query.limite) {
             let limite = Number(req.query.limite);
@@ -161,6 +165,7 @@ function busquedaPorAtributos(req, res) {
 
 module.exports = {
     crearUsuario,
+    obtenerUsuario,
     obtenerUsuarios,
     modificarUsuario,
     eliminarUsuario,
