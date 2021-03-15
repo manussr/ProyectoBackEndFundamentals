@@ -10,11 +10,11 @@ const {
 } = require('../controllers/historias')
 
 
-router.get('/:id?', auth.requerido, obtenerHistoria);
+router.get('/:id?', obtenerHistoria);
 router.post('/', auth.requerido, crearHistoria);
 router.put('/:id', auth.requerido, modificarHistoria);
 router.delete('/:id', auth.requerido, eliminarHistoria);
-router.post('/buscar', auth.requerido, busquedaPorAtributos);
-router.post('/:parametros', auth.requerido, obtenerInformacionPorCampos);
+router.post('/buscar', busquedaPorAtributos);
+router.post('/:parametros', obtenerInformacionPorCampos);
 
 module.exports = router;
