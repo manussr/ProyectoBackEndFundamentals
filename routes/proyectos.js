@@ -2,14 +2,20 @@ var router = require('express').Router();
 
 const{
     crearProyecto,
-    obtenerProyecto,
-	modificarProyecto,
-    eliminarProyecto
+    obtenerProyectos,
+	modificarProyectoCompleto,
+    eliminarProyecto,
+    obtenerProyectoPorID,
+    filtrarProyectosPorAtributo,
+    obtenerProyectosAvanzado
 } = require('../controllers/proyectos')
 
-router.get('/', obtenerProyecto)
+router.get('/', obtenerProyectos)
+router.get('/:parametros', obtenerProyectosAvanzado)
+router.get('/unique/:idProyecto', obtenerProyectoPorID)
+router.get('/buscar/:atributo/:busqueda', filtrarProyectosPorAtributo)
 router.post('/', crearProyecto)
-router.put('/:id', modificarProyecto)
-router.delete('/:id', eliminarProyecto)
+router.put('/:idProyecto', modificarProyectoCompleto)
+router.delete('/:idProyecto', eliminarProyecto)
 
 module.exports = router;
