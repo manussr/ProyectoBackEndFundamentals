@@ -12,7 +12,7 @@ const {
 } = require('../controllers/usuarios')
 
 router.get('/:id?', /*auth.requerido,*/ obtenerUsuario); //funciona
-router.post('/:parametros', /*auth.requerido,*/ obtenerInformacionPorCampos); // Funciona
+router.post('/atributos/:parametros', /*auth.requerido,*/ obtenerInformacionPorCampos); // Funciona
 router.post('/', crearUsuario); //funciona
 router.put('/:id', /*auth.requerido,*/ modificarUsuario); //sin probar
 router.delete('/:id', /*auth.requerido,*/ eliminarUsuario); // funciona
