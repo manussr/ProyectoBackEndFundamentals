@@ -120,3 +120,6 @@ Archivo de comandos usados para la creacion de la base de datos en MySQL __proyA
 Archivo de comandos para poblar la base 
 
 - *Puede encontrase en la carpeta Assets/registrosDB.sql*
+
+Token para realizar peticiones con autenticacion: 
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDgsIm5vbWJyZSI6IlBlcGUgUm9kcmlndWV6IiwiZXhwaXJhdGlvbiI6bnVsbCwiaWF0IjoxNjE1Nzc5MDg5fQ.AE62H4fQV8LW0Coap6aWtiA4_fpSUSG7_r0AIeOrOHs
