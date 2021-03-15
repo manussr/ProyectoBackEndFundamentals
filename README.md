@@ -319,13 +319,16 @@ Historia
 
 ### Diagrama Entidad - Relacion
 
-![enter image description here](https://github.com/manussr/ProyectoBackEndFundamentals/blob/main/assets/img/DIAGRAMAENTIDADRELACION.png)
+![](https://github.com/manussr/ProyectoBackEndFundamentals/blob/main/assets/img/DIAGRAMAENTIDADRELACION.png)
 
 ### Diagrama Relacional
-![enter image description here](https://github.com/manussr/ProyectoBackEndFundamentals/blob/main/assets/img/diagramaR.jpg)
+
+![](https://github.com/manussr/ProyectoBackEndFundamentals/blob/main/assets/img/diagramaR.jpg)
+
 ### Diagrama de base de datos
 
-![enter image description here](https://github.com/manussr/ProyectoBackEndFundamentals/blob/main/assets/DiagramaBase.jpg)
+![](https://github.com/manussr/ProyectoBackEndFundamentals/blob/main/assets/img/DiagramaBase.jpg)
+
 ### Descripcion de Tablas
 
     CREATE  DATABASE DVxKsCODLM;
