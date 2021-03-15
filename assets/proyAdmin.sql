@@ -1,13 +1,23 @@
-CREATE DATABASE proyAdmin;
-USE proyAdmin;
-CREATE TABLE usuario(
-     idUsuario INT PRIMARY KEY,
-     nombre VARCHAR(50) NOT NULL,
-		 cargo VARCHAR(50) NOT NULL,
-     departamento VARCHAR(50) NOT NULL,
-		 tipo VARCHAR(50) NOT NULL
- );
+CREATE DATABASE DVxKsCODLM;
+USE DVxKsCODLM;
 
+CREATE TABLE `usuarios`  (
+  `idUsuario` int(11) NOT NULL,
+  `email` varchar(255)  NOT NULL,
+  `nombre` varchar(255)  NOT NULL,
+  `cargo` varchar(255)  NOT NULL,
+  `departamento` varchar(255)  NOT NULL,
+  `tipo` varchar(255)  NOT NULL,
+  `salt` varchar(255)  NULL DEFAULT NULL,
+  `hash` varchar(255)  NULL DEFAULT NULL,
+  `createdAt` datetime(0) NOT NULL,
+  `updatedAt` datetime(0) NOT NULL,
+  PRIMARY KEY (`idUsuario`)
+) ;
+
+
+
+ 
  /*DESCRIBE usuario;
 
 +--------------+-------------+------+-----+---------+-------+
@@ -23,17 +33,24 @@ CREATE TABLE usuario(
 
 */
  
- CREATE TABLE proyecto(
-     idProyecto INT PRIMARY KEY,
-     nombre VARCHAR(50) NOT NULL,
-		 prioridad CHAR NOT NULL,
-     fecha_creacion date NOT NULL,
-		 fecha_finalizacion date,
-		 idCreador INT NOT NULL,
-		 estado CHAR NOT NULL,
-		 FOREIGN KEY (idCreador) REFERENCES usuario(idUsuario)
- );
  
+ CREATE TABLE `proyectos`  (
+  `idProyecto` int(11) NOT NULL,
+  `nombre` varchar(255)  NULL DEFAULT NULL,
+  `idAdministrador` int(11) NULL DEFAULT NULL,
+  `idAsignado` int(11) NULL DEFAULT NULL,
+  `prioridad` varchar(255)  NULL DEFAULT NULL,
+  `estado` varchar(255)  NULL DEFAULT NULL,
+  `fechaCreacion` varchar(255)  NULL DEFAULT NULL,
+  `fechaTermino` varchar(255)  NULL DEFAULT NULL,
+  `createdAt` datetime(0) NOT NULL,
+  `updatedAt` datetime(0) NOT NULL,
+  PRIMARY KEY (`idProyecto`) ,
+  INDEX `proyectos_ibfk_1`(`idAdministrador`) ,
+  INDEX `proyectos_ibfk_2`(`idAsignado`) ,
+  FOREIGN KEY (`idAdministrador`) REFERENCES `usuarios` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`idAsignado`) REFERENCES `usuarios` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE
+) ;
 
  /*DESCRIBE proyecto;
 
@@ -51,22 +68,27 @@ CREATE TABLE usuario(
 
 */
  
- CREATE TABLE historia(
-     idHistoria INT PRIMARY KEY,
-     nombre VARCHAR(50) NOT NULL,
-		 estado CHAR NOT NULL,
-		 prioridad CHAR NOT NULL,
-     fecha_creacion DATE NOT NULL,
-		 fecha_finalizacion DATE,
-		 descripcion TEXT,
-		 idProyecto INT NOT NULL,
-		 idAdministrador INT NOT NULL,
-		 idDesarrollador INT,
-		 FOREIGN KEY (idAdministrador) REFERENCES usuario(idUsuario),
-		 FOREIGN KEY (idDesarrollador) REFERENCES usuario(idUsuario),
-		 FOREIGN KEY (idProyecto) REFERENCES proyecto(idProyecto)
+ CREATE TABLE historias(
+    `idHistoria` int(11) NOT NULL,
+    `nombre` text  NOT NULL,
+    `estado` varchar(255)  NOT NULL,
+    `prioridad` varchar(255)  NOT NULL,
+    `fecha_creacion` date NOT NULL,
+    `fecha_finalizacion` date NULL DEFAULT NULL,
+    `descripcion` text  NULL,
+    `idProyecto` int(11) NULL DEFAULT NULL,
+    `idAdministrador` int(11) NULL DEFAULT NULL,
+    `idDesarrollador` int(11) NULL DEFAULT NULL,
+    `createdAt` datetime(0) NOT NULL,
+    `updatedAt` datetime(0) NOT NULL,
+	PRIMARY KEY (`idHistoria`)
+	FOREIGN KEY (`idProyecto`) REFERENCES `proyectos` (`idproyecto`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`idAdministrador`) REFERENCES `usuarios` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`idDesarrollador`) REFERENCES `usuarios` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE
 		
  );
+
+
 
  /*DESCRIBE historia;
 

@@ -8,9 +8,7 @@ const Proyecto = require('./Proyecto');
 class Historia extends Model {}
 Historia.init({
     idHistoria: {
-        // se indica el tipo de dato de la columna.
         type: DataTypes.INTEGER,
-        // indicamos que este campo es llave primaria
         primaryKey: true
     },
     nombre: {
@@ -34,9 +32,7 @@ Historia.init({
     idProyecto: {
         type: DataTypes.INTEGER,
         references: {
-            // This is a reference to another model
             model: Proyecto,
-            // This is the column name of the referenced model
             key: 'idProyecto'
         }
     },
@@ -44,9 +40,7 @@ Historia.init({
     idAdministrador: {
         type: DataTypes.INTEGER,
         references: {
-            // This is a reference to another model
             model: Usuario,
-            // This is the column name of the referenced model
             key: 'idUsuario'
         }
     },
@@ -54,9 +48,7 @@ Historia.init({
     idDesarrollador: {
         type: DataTypes.INTEGER,
         references: {
-            // This is a reference to another model
             model: Usuario,
-            // This is the column name of the referenced model
             key: 'idUsuario'
         }
     }
