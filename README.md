@@ -407,11 +407,17 @@ Historia
     INSERT INTO `usuarios` VALUES (48, 'edz2@g.com', 'Pepe Rodriguez', 'desarrollador', 'dept-4', 'administrador', '7dc24ef7869fa1ffaa52c48d5a2f2608', 'aa6751097fa6325f94d06f67c92f70df4eef68263a3e5f0ff3b2328cd2c98f807e3cc591c885f0900735e08f9276c21f01f72bf3500f7e8ac94a01e475df9f1d', '2021-03-15 05:31:16', '2021-03-15 05:31:16');
     INSERT INTO `usuarios` VALUES (100, 'expertoBedu@correo.com', 'Experto Bedu', 'Experto', 'Centro_de_atencion_al_usuario', 'Administrador', '3223ed51b7fd7bc0080a13e74ff9af72', 'a915529b9fc6a6982fbd4f39e01ca4f552bc430bd974c1a4c50335e763caaea68060d1cff9cae0c6c000da00f3a40df400eeb038ce4cdab96ee0f7662a163343', '2021-03-15 05:35:04', '2021-03-15 05:35:04');
 
-
-
-    INSERT  INTO  `proyecto` (`idProyecto`,`nombre`,`prioridad`,`fecha_creacion`,`fecha_finalizacion`,`idCreador`,`estado`) VALUES (100,"Proyecto Tienda","M","2020-05-10 04:26:18","2021-01-29 12:01:56",28,"0"),(101,"Proyecto Oficina","B","2020-02-01 05:42:26","2020-12-01 05:02:55","12","1"),(102,"Proyecto Banco","B","2020-12-16 18:57:55",NULL,44,"1"),(103,"Proyecto Hospital","A","2020-01-17 08:31:31","2020-02-03 11:30:44",5,"1"),(104,"Proyecto Administracion Escolar","A","2021-09-29 16:33:09",NULL,44,"0"),(105,"Proyecto Casa","B","2021-08-10 10:18:51","2020-07-17 18:53:44",23,"0"),(106,"Proyecto Experimental","A","2021-07-04 15:22:30","2020-10-28 11:40:13",2,"1"),(107,"Proyecto Hotel","B","2021-09-20 06:18:42","2021-06-01 11:40:49",26,"0"),(108,"Proyecto Periodico","B","2020-01-14 15:05:11","2021-07-11 05:05:10",48,"1"),(109,"Proyecto Red Social","A","2020-07-17 01:07:01",NULL,44,"1");
-
-
+     INSERT  INTO  `proyectos` (`idProyecto`,`nombre`,`idAdministrador`,`idAsignado`,`prioridad`,`estado`,`fechaCreacion`,`fechaTermino`,`createdAt`,`updatedAt`) VALUES 
+     (1,"Proyecto Tienda",1,2,"M","Finalizado","2020-05-10 04:26:18","2021-01-29 12:01:56","2021-03-15 03:22:59","2021-03-15 03:22:59"),
+	(2,"Proyecto Oficina",1,2,"B","Finalizado","2020-02-01 05:42:26","2020-12-01 05:02:55","2021-03-15 03:22:59","2021-03-15 03:22:59"),
+    (3,"Proyecto Banco",1,2,"B","En desarrollo","2020-12-16 18:57:55",NULL,"2021-03-15 03:22:59","2021-03-15 03:22:59"),
+    (4,"Proyecto Hospital",1,2,"A","Finalizado","2020-01-17 08:31:31","2020-02-03 11:30:44","2021-03-15 03:22:59","2021-03-15 03:22:59"),
+    (5,"Proyecto Administracion Escolar",1,2,"A","En desarrollo","2021-09-29 16:33:09",NULL,"2021-03-15 03:22:59","2021-03-15 03:22:59"),
+    (6,"Proyecto Casa",1,2,"B","Finalizado","2021-08-10 10:18:51","2020-07-17 18:53:44","2021-03-15 03:22:59","2021-03-15 03:22:59"),
+    (7,"Proyecto Experimental",1,2,"A","Finalizado","2021-07-04 15:22:30","2020-10-28 11:40:13","2021-03-15 03:22:59","2021-03-15 03:22:59"),
+    (8,"Proyecto Hotel",1,2,"B","Finalizado","2021-09-20 06:18:42","2021-06-01 11:40:49","2021-03-15 03:22:59","2021-03-15 03:22:59"),
+    (9,"Proyecto Periodico",1,2,"B","Finalizado","2020-01-14 15:05:11","2021-07-11 05:05:10","2021-03-15 03:22:59","2021-03-15 03:22:59"),
+    (10,"Proyecto Red Social",1,2,"A","En desarrollo","2020-07-17 01:07:01",NULL,"2021-03-15 03:22:59","2021-03-15 03:22:59");
 
 
 
@@ -474,3 +480,12 @@ Repositorio de la API   👉    [![enter image description here](https://img.shi
 
 
 Presentacion de proyecto 👉 [Video](https://drive.google.com/file/d/1dwZ5SfR2ZZbNJ3GYRqmESdey8hF2dpgh/view?usp=sharing)
+
+
+# Datos
+
+Credenciales para realizar peticiones con autenticacion: 
+- *Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwLCJub21icmUiOiJFeHBlcnRvIEJlZHUiLCJleHBpcmF0aW9uIjpudWxsLCJpYXQiOjE2MTU3ODY1MDV9.nKA8la_jXhPnG0SOhr-LUWSl9eVhiESAEbmoqoWS-rc*
+- *Email: expertoBedu@correo.com*
+- *Contraseña: test100*
+
