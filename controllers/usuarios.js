@@ -19,9 +19,7 @@ function crearUsuario(req, res, next) {
     }).catch(next);
 }
 
-function obtenerUsuarios(req, res) {
 
-}
 
 // Esta función obtiene los usuarios y tiene parámetros opcionales 
 function obtenerUsuario(req, res) {
@@ -55,33 +53,52 @@ function obtenerUsuario(req, res) {
 
 // Esta función modifica un usuario
 function modificarUsuario(req, res, next) {
-    const usr = Usuario.create({
-        id: req.params.id,
-        ...req.body
-    })
-    usr.save().then(user => {
-        return res.status(201).json(user.toAuthJSON())
-    }).catch(next);
+    const usuario = Usuario.findByPk(req.params.id)
+        .then(user => {
+            if (!user) {
+                return res.status(404).json('El usuario no existe');
+            }
+            if (req.body.email) {
+                user.email = req.body.email;
+            }
+            if (req.body.nombre) {
+                user.nombre = req.body.nombre;
+            }
+            if (req.body.cargo) {
+                user.cargo = req.body.cargo;
+            }
+            if (req.body.tipo) {
+                user.tipo = req.body.tipo;
+            }
+            if (req.body.password) {
+                user.crearPassword(req.body.password);
+            }
+            user.save().then(updatedUser => {
+                return res.status(201).json(updatedUser.toAuthJSON())
+            }).catch(next);
+        })
+        .catch(next);
 }
 
 // Esta función elimina un usuario
 function eliminarUsuario(req, res) {
-    //const usr = Usuario.findByPk(req.params.id);
-    console.log(req.params.id);
     const usr = req.params.id;
-
     if (usr === null) {
         return res.sendStatus(401)
     } else {
-        /*usr.destroy().then(usr => {return res.status(200)
-        })
-        .catch(err => {
-            return res.sendStatus(500)
-        })
-    }*/
-        Usuario.destroy({ where: { idUsuario: usr } })
-            .then(user => { res.status(200).json({ Operacion: 'Se ha borrado el registro con exito' }) })
-            .catch(res.sendStatus(500))
+        Usuario.findByPk(req.params.id).then(user => {
+            if (!user) {
+                return res.status(404).json('El usuario no existe');
+            } else {
+                Usuario.destroy({ where: { idUsuario: usr } })
+                    .then(user => { res.status(200).json({ Operacion: 'Se ha borrado el registro con exito' }) })
+                    .catch(error => {
+                        return res.status(500).json('Error con el servidor');
+                    })
+            }
+        }).catch(error => {
+            return res.status(500).json('Error con el servidor');
+        });
     }
 }
 
@@ -111,64 +128,74 @@ function iniciarSesion(req, res, next) {
 
 // Esta función devuelve los objetos que tengan un atributo que coincida con la busqueda
 function busquedaPorAtributos(req, res) {
-    console.log(req.body.busqueda);
+
     const atributoBusqueda = req.body.busqueda ? req.body.busqueda : '';
     Usuario.findAll({
         attributes: ['idUsuario', 'email', 'nombre', 'cargo', 'departamento', 'tipo'],
         where: {
-
-
             [Op.or]: [{
                     email: {
-                        [Op.like]: `${atributoBusqueda}`
+                        [Op.like]: `%${atributoBusqueda}%`
                     }
                 },
-
                 {
                     nombre: {
-                        [Op.like]: `${atributoBusqueda}`
+                        [Op.like]: `%${atributoBusqueda}%`
                     }
                 },
                 {
                     departamento: {
-                        [Op.like]: `${atributoBusqueda}`
+                        [Op.like]: `%${atributoBusqueda}%`
                     }
                 },
                 {
                     cargo: {
-                        [Op.like]: `${atributoBusqueda}`
+                        [Op.like]: `%${atributoBusqueda}%`
                     }
                 },
                 {
                     tipo: {
-                        [Op.like]: `${atributoBusqueda}`
+                        [Op.like]: `%${atributoBusqueda}%`
                     }
                 }
             ]
-
-
-
-
-
-
-
-
-
         }
     }).then((users) => {
-        return /*res.json(users.map(u => u.map)*/ res.send(users);
+        return res.send(users);
 
     }).catch(error => {
         return res.status(401).send(error);
     })
 }
 
+// Esta funcion obtiene la información de los campos que el usuario solicite
+
+function obtenerInformacionPorCampos(req, res, next) {
+    let { parametros } = req.params;
+    parametros = parametros.split(',');
+    // Atributos que existen en el modelo
+    const validos = Object.keys(Usuario.rawAttributes);
+    // Evita mostrar el hash y salt
+    validos.splice(validos.indexOf('hash'), 1);
+    validos.splice(validos.indexOf('salt'), 1);
+    // Solo considera los atributos que existen en el modelo
+    const atributosBusqueda = parametros.filter(p => validos.includes(p))
+    Usuario.findAll({
+        attributes: atributosBusqueda
+    }).then(post => {
+        return res.status(200).json(post);
+    }).catch(error => status(500).json(error))
+
+}
+
+
 module.exports = {
     crearUsuario,
     obtenerUsuario,
-    obtenerUsuarios,
+
     modificarUsuario,
     eliminarUsuario,
     iniciarSesion,
-    busquedaPorAtributos
+    busquedaPorAtributos,
+    obtenerInformacionPorCampos
 }

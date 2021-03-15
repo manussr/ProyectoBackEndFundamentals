@@ -2,14 +2,19 @@ var router = require('express').Router();
 
 const {
     crearHistoria,
-    obtenerHistorias,
+    obtenerHistoria,
     modificarHistoria,
-    eliminarHistoria
+    eliminarHistoria,
+    busquedaPorAtributos,
+    obtenerInformacionPorCampos
 } = require('../controllers/historias')
 
-router.get('/', obtenerHistorias)
-router.post('/', crearHistoria)
-router.put('/:id', modificarHistoria)
-router.delete('/:id', eliminarHistoria)
+
+router.get('/:id?', /*auth.requerido,*/ obtenerHistoria);
+router.post('/', /*auth.requerido,*/ crearHistoria);
+router.put('/:id', /*auth.requerido,*/ modificarHistoria);
+router.delete('/:id', /*auth.requerido,*/ eliminarHistoria);
+router.post('/buscar', /*auth.requerido,*/ busquedaPorAtributos);
+router.post('/:parametros', /*auth.requerido,*/ obtenerInformacionPorCampos);
 
 module.exports = router;
