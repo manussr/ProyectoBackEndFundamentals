@@ -325,7 +325,7 @@ Historia
 ![enter image description here](https://github.com/manussr/ProyectoBackEndFundamentals/blob/main/assets/img/diagramaR.jpg)
 ### Diagrama de base de datos
 
-![enter image description here](https://github.com/manussr/ProyectoBackEndFundamentals/blob/main/assets/img/diagramabase.jpg)
+![enter image description here](https://github.com/manussr/ProyectoBackEndFundamentals/blob/main/assets/DiagramaBase.jpg)
 ### Descripcion de Tablas
 
     CREATE  DATABASE DVxKsCODLM;
