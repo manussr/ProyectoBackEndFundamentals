@@ -36,14 +36,14 @@ function obtenerUsuario(req, res) {
                 Usuario.findAll({ limit: limite }).then(users => {
                     return res.json(users.map(u => u.publicData()));
                 }).catch(error => {
-                    return res.status(401).send(error);
+                    return res.status(500).send(error);
                 })
             }
         } else {
             Usuario.findAll().then(users => {
                 return res.json(users.map(u => u.publicData()))
             }).catch(error => {
-                return res.status(401).send(error);
+                return res.status(500).send(error);
             })
         }
     } else {
