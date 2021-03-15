@@ -1,5 +1,6 @@
 // Controlador para proyectos
 const Proyecto = require('../models/Proyecto')
+const { Op } = require('sequelize');
 
 async function crearProyecto(req, res) {
   try {
@@ -55,8 +56,8 @@ function obtenerProyectosAvanzado(req, res) {
   parametros=dividirParametros(parametros,",");
   Proyecto.findAll({
     attributes: parametros
-  }).then(post => {
-    res.json(post);
+  }).then(proyectos => {
+    res.json(proyectos);
 })
 }
 
@@ -72,10 +73,84 @@ function obtenerProyectosAvanzado(req, res) {
   
 }
 
+
+
 function dividirParametros(cadenaADividir,separador) {
   var arrayDeCadenas = cadenaADividir.split(separador);
 
   return arrayDeCadenas;
+}
+
+function filtrarProyectosPorAtributo(req, res) {
+  const params = req.params;
+
+
+  switch (params.atributo) {
+    case "idProyecto":
+      Proyecto.findAll({
+        where: {
+          idProyecto: params.busqueda
+        }
+      }).then(proyectos => {
+        res.json(proyectos);
+    })
+      break;
+    case "nombre":
+      Proyecto.findAll({
+        where: { nombre: params.busqueda}
+      }).then(proyectos => {
+        res.json(proyectos);
+    })
+      break;
+    
+    case "idAdministrador":
+      Proyecto.findAll({
+        where: { idAdministrador: params.busqueda}
+      }).then(proyectos => {
+        res.json(proyectos);
+    })
+      break;
+
+      case "idAsignado":
+        Proyecto.findAll({
+          where: { idAsignado: params.busqueda}
+        }).then(proyectos => {
+          res.json(proyectos);
+      })
+      break;
+      case "prioridad":
+        Proyecto.findAll({
+          where: { prioridad: params.busqueda}
+        }).then(proyectos => {
+          res.json(proyectos);
+      })
+      break;
+      case "estado":
+        Proyecto.findAll({
+          where: { estado: params.busqueda}
+        }).then(proyectos => {
+          res.json(proyectos);
+      })
+      break;
+      case "fechaCreacion":
+        Proyecto.findAll({
+          where: { fechaCreacion: params.busqueda}
+        }).then(proyectos => {
+          res.json(proyectos);
+      })
+        break;
+        case "fechaTermino":
+          Proyecto.findAll({
+            where: { fechaTermino: params.busqueda}
+          }).then(proyectos => {
+            res.json(proyectos);
+        })
+          break;
+      
+    default:
+      res.json({ mensaje: "Busqueda invalida"});
+      break;
+  }
 }
 
 module.exports = {
@@ -84,5 +159,6 @@ module.exports = {
   modificarProyectoCompleto,
   eliminarProyecto,
   obtenerProyectoPorID,
+  filtrarProyectosPorAtributo,
   obtenerProyectosAvanzado
 }
