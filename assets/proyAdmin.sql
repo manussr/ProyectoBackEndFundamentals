@@ -18,20 +18,6 @@ CREATE TABLE `usuarios`  (
 
 
  
- /*DESCRIBE usuario;
-
-+--------------+-------------+------+-----+---------+-------+
-| Field        | Type        | Null | Key | Default | Extra |
-+--------------+-------------+------+-----+---------+-------+
-| idUsuario    | int         | NO   | PRI | NULL    |       |
-| nombre       | varchar(50) | NO   |     | NULL    |       |
-| cargo        | varchar(50) | NO   |     | NULL    |       |
-| departamento | varchar(50) | NO   |     | NULL    |       |
-| tipo         | varchar(50) | NO   |     | NULL    |       |
-+--------------+-------------+------+-----+---------+-------+
-
-
-*/
  
  
  CREATE TABLE `proyectos`  (
@@ -52,21 +38,7 @@ CREATE TABLE `usuarios`  (
   FOREIGN KEY (`idAsignado`) REFERENCES `usuarios` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ;
 
- /*DESCRIBE proyecto;
-
-+--------------------+-------------+------+-----+---------+-------+
-| Field              | Type        | Null | Key | Default | Extra |
-+--------------------+-------------+------+-----+---------+-------+
-| idProyecto         | int         | NO   | PRI | NULL    |       |
-| nombre             | varchar(50) | NO   |     | NULL    |       |
-| prioridad          | char(1)     | NO   |     | NULL    |       |
-| fecha_creacion     | date        | NO   |     | NULL    |       |
-| fecha_finalizacion | date        | YES  |     | NULL    |       |
-| idCreador          | int         | NO   | MUL | NULL    |       |
-| estado             | char(1)     | NO   |     | NULL    |       |
-+--------------------+-------------+------+-----+---------+-------+
-
-*/
+ 
  
  CREATE TABLE historias(
     `idHistoria` int(11) NOT NULL,
