@@ -176,10 +176,7 @@ function busquedaPorAtributos(req, res) {
 function obtenerInformacionPorCampos(req, res) {
     let { parametros } = req.params;
     parametros = parametros.split(',');
-    // Atributos que existen en el modelo
     const validos = Object.keys(Historia.rawAttributes);
-
-    // Solo considera los atributos que existen en el modelo
     const atributosBusqueda = parametros.filter(p => validos.includes(p))
     Historia.findAll({
         attributes: atributosBusqueda
