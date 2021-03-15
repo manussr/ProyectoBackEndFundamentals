@@ -121,5 +121,7 @@ Archivo de comandos para poblar la base
 
 - *Puede encontrase en la carpeta Assets/registrosDB.sql*
 
-Token para realizar peticiones con autenticacion: 
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDgsIm5vbWJyZSI6IlBlcGUgUm9kcmlndWV6IiwiZXhwaXJhdGlvbiI6bnVsbCwiaWF0IjoxNjE1Nzc5MDg5fQ.AE62H4fQV8LW0Coap6aWtiA4_fpSUSG7_r0AIeOrOHs
+Credenciales para realizar peticiones con autenticacion: 
+- *Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwLCJub21icmUiOiJFeHBlcnRvIEJlZHUiLCJleHBpcmF0aW9uIjpudWxsLCJpYXQiOjE2MTU3ODY1MDV9.nKA8la_jXhPnG0SOhr-LUWSl9eVhiESAEbmoqoWS-rc*
+- *Email: expertoBedu@correo.com*
+- *Contraseña: test100*
