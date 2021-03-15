@@ -184,7 +184,7 @@ function obtenerInformacionPorCampos(req, res, next) {
         attributes: atributosBusqueda
     }).then(post => {
         return res.status(200).json(post);
-    }).catch(error => status(500).json(error))
+    }).catch(error => res.status(500).json(error))
 
 }
 
