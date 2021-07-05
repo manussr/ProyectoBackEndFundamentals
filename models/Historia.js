@@ -9,18 +9,21 @@ class Historia extends Model {}
 Historia.init({
     idHistoria: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     nombre: {
         type: DataTypes.TEXT,
         allowNull: false
     },
     estado: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM,
+        values: ["todo", "doing", "done"],
         allowNull: false
     },
     prioridad: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM,
+        values: ["low", "medium", "high"],
         allowNull: false
     },
     fecha_creacion: {

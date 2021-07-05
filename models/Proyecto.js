@@ -9,7 +9,8 @@ Proyecto.init({
         // se indica el tipo de dato de la columna.
         type: DataTypes.INTEGER,
         // indicamos que este campo es llave primaria
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     nombre: {
         type: DataTypes.STRING, 
@@ -34,10 +35,19 @@ Proyecto.init({
             key: 'idUsuario'
         }
     },
-    prioridad: DataTypes.STRING,
-    estado: DataTypes.STRING,
-    fechaCreacion: DataTypes.STRING,
-    fechaTermino: DataTypes.STRING
+    prioridad: {
+        type: DataTypes.ENUM,
+        values: ["low", "medium", "high"],
+    },
+    estado: {
+        type: DataTypes.ENUM,
+        values: ["todo", "doing", "done"],
+    },
+    fechaCreacion: {
+        type: DataTypes.DATEONLY,
+        allowNull: false
+    },
+    fechaTermino: DataTypes.DATEONLY
 }, { sequelize, modelName: 'proyectos' });
 
 
