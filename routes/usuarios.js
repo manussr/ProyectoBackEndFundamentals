@@ -10,13 +10,13 @@ const {
     obtenerInformacionPorCampos
 } = require('../controllers/usuarios')
 
-router.get('/:id?', auth.requerido, obtenerUsuario);
-router.post('/atributos/:parametros', auth.requerido, obtenerInformacionPorCampos);
+router.get('/:id?', obtenerUsuario);
+router.post('/atributos/:parametros',  obtenerInformacionPorCampos);
 router.post('/', crearUsuario);
-router.put('/:id', auth.requerido, modificarUsuario);
-router.delete('/:id', auth.requerido, eliminarUsuario);
+router.put('/:id',  modificarUsuario);
+router.delete('/:id',  eliminarUsuario);
 router.post('/login', iniciarSesion);
-router.post('/buscar', auth.requerido, busquedaPorAtributos);
+router.post('/buscar',  busquedaPorAtributos);
 
 
 

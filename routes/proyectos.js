@@ -14,8 +14,8 @@ router.get('/', obtenerProyectos)
 router.get('/:parametros', obtenerProyectosAvanzado)
 router.get('/unique/:idProyecto', obtenerProyectoPorID)
 router.get('/buscar/:atributo/:busqueda', filtrarProyectosPorAtributo)
-router.post('/', auth.requerido, crearProyecto)
-router.put('/:idProyecto', auth.requerido, modificarProyectoCompleto)
-router.delete('/:idProyecto', auth.requerido, eliminarProyecto)
+router.post('/', crearProyecto)
+router.put('/:idProyecto', modificarProyectoCompleto)
+router.delete('/:idProyecto', eliminarProyecto)
 
 module.exports = router;
