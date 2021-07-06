@@ -9,7 +9,8 @@ class Historia extends Model {}
 Historia.init({
     idHistoria: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     nombre: {
         type: DataTypes.TEXT,
