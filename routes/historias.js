@@ -11,9 +11,9 @@ const {
 
 
 router.get('/:id?', obtenerHistoria);
-router.post('/', auth.requerido, crearHistoria);
-router.put('/:id', auth.requerido, modificarHistoria);
-router.delete('/:id', auth.requerido, eliminarHistoria);
+router.post('/',  crearHistoria);
+router.put('/:id',  modificarHistoria);
+router.delete('/:id',  eliminarHistoria);
 router.post('/buscar', busquedaPorAtributos);
 router.post('/atributos/:parametros', obtenerInformacionPorCampos);
 
