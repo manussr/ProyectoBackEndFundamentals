@@ -12,7 +12,7 @@ const {
 
 
 router.get('/:id?', obtenerHistoria);
-router.get('/:estado?', obtenerHistoriaPorEstado);
+router.get('/:estado', obtenerHistoriaPorEstado);
 router.post('/',  crearHistoria);
 router.put('/:id',  modificarHistoria);
 router.delete('/:id',  eliminarHistoria);

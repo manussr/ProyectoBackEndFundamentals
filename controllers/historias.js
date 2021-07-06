@@ -45,7 +45,7 @@ function obtenerHistoria(req, res) {
 }
 
 function obtenerHistoriaPorEstado(req,res){
-    const estado = req.params.estado?req.params.estado:'';
+    const estado = req.query.estado?req.query.estado:'';
     Historia.findAll({ 
         where:{
             estado:{
