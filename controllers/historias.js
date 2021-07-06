@@ -44,6 +44,21 @@ function obtenerHistoria(req, res) {
     }
 }
 
+function obtenerHistoriaPorEstado(req,res){
+    const estado = req.params.estado?req.params.estado:'';
+    Historia.findAll({ 
+        where:{
+            estado:{
+                [Op.like]: estado
+            }
+        }
+     }).then(histo => {
+        return res.json(histo);
+    }).catch(error => {
+        return res.status(401).send(error);
+    })
+}
+
 
 function modificarHistoria(req, res, next) {
     const historia = Historia.findByPk(req.params.id)
@@ -193,5 +208,6 @@ module.exports = {
     modificarHistoria,
     eliminarHistoria,
     busquedaPorAtributos,
-    obtenerInformacionPorCampos
+    obtenerInformacionPorCampos,
+    obtenerHistoriaPorEstado
 }

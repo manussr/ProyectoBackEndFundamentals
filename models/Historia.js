@@ -17,10 +17,12 @@ Historia.init({
     },
     estado: {
         type: DataTypes.STRING,
+        values: ["Finalizada", "En Desarrollo", "En Preparacion"],
         allowNull: false
     },
     prioridad: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM,
+        values: ["A", "B", "M"],
         allowNull: false
     },
     fecha_creacion: {

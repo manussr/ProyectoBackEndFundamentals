@@ -50,7 +50,8 @@ Usuario.init({
     
     idUsuario: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     email:{
         type: DataTypes.STRING,
